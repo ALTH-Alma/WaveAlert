@@ -1,0 +1,79 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: Inter, sans-serif, Arial, Helvetica;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  
+  --sidebar-width: 60px;
+}
+
+body {
+  width: 100%;
+  height: auto;
+}
+
+.sidebar {
+  width: var(--sidebar-width);
+}
+
+
+.main-content {
+  margin-left: var(--sidebar-width);
+  width: calc(100% - var(--sidebar-width));
+}
+
+input:-webkit-autofill { 
+  -webkit-background-clip: text;
+}
+
+.fade-sidebar-body-enter {
+  opacity: 0;
+}
+
+.fade-sidebar-body-enter-active {
+  opacity: 1;
+  transition: opacity 150ms ease-in;
+}
+
+.fade-sidebar-body-exit {
+  opacity: 1;
+}
+
+.fade-sidebar-body-exit-active {
+  opacity: 0;
+  transition: opacity 60ms ease-in;
+}
+
+.underline-with-circle {
+  position: relative;
+  display: inline-block;
+}
+
+.underline-with-circle::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px; /* Ajusta el grosor de la línea según tus preferencias */
+  background-color: #000; /* Ajusta el color según tus preferencias */
+}
+
+.underline-with-circle::after {
+  content: '';
+  position: absolute;
+  bottom: -6px; /* Ajusta la posición vertical según tus preferencias */
+  right: 0;
+  width: 10px; /* Ajusta el tamaño del círculo según tus preferencias */
+  height: 10px; /* Ajusta el tamaño del círculo según tus preferencias */
+  background-color: #000; /* Ajusta el color del círculo según tus preferencias */
+  border-radius: 50%;
+}
