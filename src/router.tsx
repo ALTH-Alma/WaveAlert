@@ -6,12 +6,14 @@ import MainLayout from "./pages/MainLayout";
 import Home from "./components/Home"
 import Alert from "./components/Alert";
 import Delimit from "./components/Delimit";
+import Emergencias from "./components/Emergencias";
 
 
 const unprotectedRoutes = [
   { path: "/", element: <Home/> },
   { path: "/alert", element: <Alert/>},
-  { path: "/delimit", element: <Delimit/>}
+  { path: "/delimit", element: <Delimit/>},
+  { path: "/emergency", element: <Emergencias/>}
   
 ];
 

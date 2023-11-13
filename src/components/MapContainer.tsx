@@ -3,14 +3,16 @@ import { GoogleMap, useLoadScript, DrawingManager, Autocomplete, Polygon, useJsA
 import { useState, useRef } from "react";
 import deleteIcon from '../assets/borrar.png';
 import CircularWithValueLabel from './CircularWithLabeledValue';
+import esqui from '../assets/ski.png'
 const mapContainerStyle = {
   width: '1000px',
   height: '500px',
 };
 const center = {
-  lat: 7.2905715, // default latitude
-  lng: 80.6337262, // default longitude
+  lat: -33.3366134, // default latitude
+  lng: -70.2895661, // default longitude
 };
+
 
 const alertas = [
     {id:1, value:"Avalancha"},
@@ -36,18 +38,18 @@ const MapContainer = () => {
     
     function onMarkerClick () {
         setModal(true);
-        alert("Enviando alerta")
     }
 
     return (
         <div>
+            
             <GoogleMap
             zoom={15}
             center={center}
-            mapContainerStyle={mapContainerStyle}>
-                <Marker onClick={onMarkerClick} position={center}/>
+            mapContainerStyle={mapContainerStyle}
+            >
+                <Marker onClick={onMarkerClick} position={center} />
             </GoogleMap>
-
             {modal ? <div className="fixed inset-0 z-10 overflow-y-auto">
                         <div
                             className="fixed inset-0 w-full h-full bg-black opacity-40"

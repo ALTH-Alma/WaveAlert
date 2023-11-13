@@ -21,6 +21,8 @@ function Navbar()
                         to="/alert">Enviar alerta</Link>
                     <Link className="inline-block rounded-lg px-2 py-1 text-md font-medium text-gray-900 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900"
                         to="/delimit">Delimitar área</Link>
+                    <Link className="inline-block rounded-lg px-2 py-1 text-md font-medium text-gray-900 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900"
+                        to="/emergency">Emergencias</Link>
                 </div>
                 <div className="flex items-center justify-end gap-3">
                     
