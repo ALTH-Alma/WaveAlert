@@ -1,9 +1,8 @@
 import React from 'react';
 import { GoogleMap, useLoadScript, DrawingManager, Autocomplete, Polygon, useJsApiLoader, LoadScript, Marker} from '@react-google-maps/api';
 import { useState, useRef } from "react";
-import deleteIcon from '../assets/borrar.png';
 import CircularWithValueLabel from './CircularWithLabeledValue';
-import esqui from '../assets/ski.png'
+
 const mapContainerStyle = {
   width: '1000px',
   height: '500px',
@@ -26,7 +25,7 @@ const MapContainer = () => {
     const [count, setCount] = useState(false);
     const { isLoaded, loadError } = useLoadScript({
         googleMapsApiKey: 'AIzaSyDd4LbLjZurArUzMUcRJeddv1GtQ6xooKY',
-        libraries:['maps']
+        libraries:['drawing']
       });
       if (loadError) {
         return <div>Error loading maps</div>;
