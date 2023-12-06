@@ -1,0 +1,52 @@
+{
+  "name": "frontend-gestion",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "coverage": "react-scripts test --coverage",
+    "test-sonar": "react-scripts test --watchAll=false --coverage --testResultsProcessor jest-sonar-reporter",
+    "test": "react-scripts test",
+    "sonar": "node sonarqube-scanner.cjs"
+  },
+  "jest": {
+    "transform": {
+      "^.+\\.(js|ts)$": "babel-jest"
+    },
+    "transformIgnorePatterns": []
+  },
+  "dependencies": {
+    "@emotion/react": "^11.11.1",
+    "@emotion/styled": "^11.11.0",
+    "@mui/material": "^5.14.17",
+    "@propelauth/react": "^2.0.14",
+    "@react-google-maps/api": "^2.19.2",
+    "@tailwindcss/aspect-ratio": "^0.4.2",
+    "@tailwindcss/forms": "^0.5.7",
+    "@tailwindcss/typography": "^0.5.10",
+    "axios": "^1.6.2",
+    "leaflet": "^1.9.4",
+    "leaflet.heat": "^0.2.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-leaflet": "^4.2.1",
+    "react-leaflet-draw": "^0.20.4",
+    "react-query": "^3.39.3",
+    "react-router-dom": "^6.18.0",
+    "requirejs": "^2.3.6",
+    "use-places-autocomplete": "^4.0.1",
+    "vite-plugin-commonjs": "^0.10.1"
+  },
+  "devDependencies": {
+    "@types/leaflet": "^1.9.8",
+    "@types/node": "^20.10.3",
+    "@vitejs/plugin-react-swc": "^3.4.1",
+    "file-loader": "^6.2.0",
+    "tailwindcss": "^3.3.0",
+    "typescript": "^4.9.3",
+    "vite": "^4.2.0"
+  }
+}
