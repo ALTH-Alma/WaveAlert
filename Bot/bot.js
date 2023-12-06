@@ -1,6 +1,26 @@
 const { Telegraf } = require('telegraf')
 const bot = new Telegraf('6368460619:AAHoCrptcVjvpCQ2iNnxrRdGa529qqWqWYk')
 const geolocation = require('geolocation-utils');
+const mongoose = require('mongoose');
+mongoose.connect('mongodb://localhost:27017/WaveAlert');
+
+const db = mongoose.connection;
+
+db.on('error', console.error.bind(console, 'MongoDB connection error:'));
+db.once('open', () => {
+  console.log('Connected to MongoDB');
+});
+//Esquema para las ubicaciones
+const locationSchema = new mongoose.Schema({
+    name: { type: String, required: false},
+    status: { type: String, required: true},
+    chatId: { type: Number, required: true },
+    latitude: { type: Number, required: true },
+    longitude: { type: Number, required: true },
+  });
+
+//Modelo
+const Location = mongoose.model('Location', locationSchema);
 
 // Almacena las ubicaciones en tiempo real por chat ID
 const locations = {};
@@ -55,11 +75,29 @@ function stopLocationRequests(chatId) {
 }
 
 // Maneja la ubicación cuando el usuario la comparte
-bot.on('location', (ctx) => {
+bot.on('location', async(ctx) => {
+    const chatId = ctx.message.chat.id;
     const location = ctx.message.location;
     const latitude = location.latitude;
     const longitude = location.longitude;
+    const first = ctx.message.from.first_name;
+    console.log(ctx.message)
+    // Crea una nueva instancia de Location
+    const newLocation = new Location({
+        name: first,
+        status: 'No atendida',
+        chatId: chatId,
+        latitude: latitude,
+        longitude: longitude,
+    });
 
+    try {
+        await newLocation.save();
+        ctx.reply('Ubicación guardada exitosamente en la base de datos.');
+      } catch (error) {
+        ctx.reply('Error al guardar la ubicación en la base de datos.');
+        console.error(error);
+      }
     ctx.reply(`Gracias por compartir tu ubicación. Latitud: ${latitude}, Longitud: ${longitude}`);
 });
 
