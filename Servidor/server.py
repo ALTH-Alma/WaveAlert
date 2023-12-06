@@ -49,5 +49,37 @@ def authUser():
     else:
         abort(404,{'error':'Usuario no encontrado'})
 
+
+@app.route("/monitor")
+def monitor():
+    try: 
+        locations = db['locations'].aggregate([
+            {
+                '$group': {
+                    '_id': '$chatId',
+                    'locations': {
+                        '$addToSet':{
+                            'latitude': '$latitude',
+                            'longitude': '$longitude',
+                            'nombre': '$nombre'
+                        }
+                    },
+                    'name': {'$first': '$nombre'}
+                },
+            },
+            {
+                '$project':{
+                    '_id': 0,
+                    'chatId': '$_id',
+                    'locations': 1
+                }
+            }
+        ])
+
+        result = list(locations)
+        return jsonify(result)
+    except Exception as e:
+        return jsonify({'error': str(e)})
+
 if __name__ == '__main__':
     app.run(debug=True)

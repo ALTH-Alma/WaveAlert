@@ -9,12 +9,12 @@ function Navbar() {
     const navigate = useNavigate();
     const logoutMutation = useMutation({
         mutationFn: (user: { mail: string, pass: string }) => logout(user),
-        onSuccess: () => {window.location.reload()}
+        onSuccess: () => { window.location.reload() }
     })
 
     const salir = () => {
         logoutMutation.mutate({ mail: user.data?.email || "", pass: user.data?.pass || "" })
-        
+
     }
     return (
         <header
@@ -36,6 +36,9 @@ function Navbar() {
 
                         {user.data && <Link className="inline-block rounded-lg px-2 py-1 text-md font-medium text-gray-900 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900"
                             to="/alert">Monitorear</Link>}
+
+                        {user.data && <Link className="inline-block rounded-lg px-2 py-1 text-md font-medium text-gray-900 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900"
+                            to="/send-alert">Enviar alerta</Link>}
 
                         {user.data && <Link className="inline-block rounded-lg px-2 py-1 text-md font-medium text-gray-900 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900"
                             to="/heatmap">Mapa de calor</Link>}
