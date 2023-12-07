@@ -109,10 +109,10 @@ def register_delimited_area():
 
 
 @app.route('/get_areas', methods=['GET'])
-def get_all_areas():
+def get_all_safe_areas():
     try:
         # Obtener todas las áreas de la colección 'areas'
-        areas_cursor = db['areas'].find()
+        areas_cursor = db['areas'].find({'risk_level': 'Bajo'})
 
         # Crear una lista para almacenar todas las áreas
         areas_list = []
@@ -132,7 +132,7 @@ def get_all_areas():
 def get_dangerous_areas():
     try:
         # Obtener las áreas peligrosas de la colección 'areas'
-        dangerous_areas_cursor = db['areas'].find({'risk_level': 'peligrosa'})
+        dangerous_areas_cursor = db['areas'].find({'risk_level': 'Alto'})
 
         # Crear una lista para almacenar las áreas peligrosas
         dangerous_areas_list = []
@@ -155,7 +155,7 @@ def check_dangerous_areas():
         all_locations = db['locations'].find()
 
         # Obtener todas las zonas peligrosas
-        dangerous_areas = list(db['areas'].find({'risk_level': 'peligrosa'}))
+        dangerous_areas = list(db['areas'].find({'risk_level': 'Alto'}))
 
         # Crear un diccionario para almacenar alertas por usuario
         user_alerts = {}
@@ -190,6 +190,17 @@ def check_dangerous_areas():
 
     except Exception as e:
         return jsonify({'error': str(e)})
+
+#Alertas no atendidas
+@app.route("/alerts", methods=['GET'])
+def alerts():
+    # Proyección para excluir el campo "_id"
+    projection = {"_id": 0}
+
+    alertas = db['alerts'].find({"status": "No atendida"}, projection)
+    alertas_list = [alerta for alerta in alertas]
+
+    return jsonify(alertas_list)
 
 if __name__ == '__main__':
     app.run(debug=True)
