@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, request,abort
 from pymongo import MongoClient
 from flask_cors import CORS
+from shapely.geometry import Polygon, Point
 app = Flask(__name__)
 CORS(app)
 client = MongoClient('mongodb://localhost:27017/')
@@ -201,6 +202,14 @@ def alerts():
     alertas_list = [alerta for alerta in alertas]
 
     return jsonify(alertas_list)
+
+@app.route("/send-alert", methods=['POST'])
+def send_alert():
+    datos = request.json
+
+    db['peligros'].insert_one(datos)
+
+    return jsonify({'mensaje': 'Datos recibidos correctamente'})
 
 if __name__ == '__main__':
     app.run(debug=True)

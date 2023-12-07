@@ -27,11 +27,20 @@ const alertsSchema = new mongoose.Schema({
     status: { type: String, required: true }
 })
 
+//Esquema para las solicitudes de peligro
+const peligroSchema = new mongoose.Schema({
+    chatId: { type: String, required: true },
+    alert: { type: Boolean, required: true }
+})
+
 //Modelo location
 const Location = mongoose.model('Location', locationSchema);
 
 //Modelo alerts
 const Alerts = mongoose.model('Alerts', alertsSchema);
+
+//Modelo peligro
+const Peligro = mongoose.model('Peligro', peligroSchema)
 
 //Ultimo comando
 let lastCommand = '';
@@ -132,8 +141,7 @@ bot.on('location', async (ctx) => {
             console.error(error);
         }
         ctx.reply(`Gracias por compartir tu ubicación. Latitud: ${latitude}, Longitud: ${longitude}`);
-    }else if (lastCommand == 'alert')
-    {
+    } else if (lastCommand == 'alert') {
         const chatId = ctx.message.chat.id;
         const location = ctx.message.location;
         const latitude = location.latitude;
@@ -148,17 +156,34 @@ bot.on('location', async (ctx) => {
             longitude: longitude,
         })
 
-        try{
+        try {
             await newAlert.save();
             ctx.reply('Envio de alerta guardado exitosamente en la base de datos.');
-        }catch(error)
-        {
+        } catch (error) {
             ctx.reply('Error al guardar el envio de alerta.');
             console.error(error);
         }
-        
+
         ctx.reply(`${first} la alerta de emergencia ha sido enviada. Latitud: ${latitude}, Longitud: ${longitude}`);
     }
 });
+
+
+const enviarAlertasContinuas = async () => {
+    // Obtener todos los documentos de la colección
+    let result;
+    try {
+        result = await Peligro.find({});
+    }catch (err)
+    {
+        throw err;
+    }
+
+    bot.telegram.sendMessage(result[0].chatId, 'Abandone la zona - PELIGRO!!!!')
+};
+
+setInterval(() => {
+    enviarAlertasContinuas();
+  }, 1000);
 
 bot.launch()
