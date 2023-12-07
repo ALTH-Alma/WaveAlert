@@ -148,36 +148,48 @@ def get_dangerous_areas():
         return jsonify({'error': str(e)})
     
     
-""" # Cruce
-def get_dangerous_areas():
+@app.route('/check_dangerous_areas', methods=['GET'])
+def check_dangerous_areas():
     try:
-        dangerous_areas = db['areas'].objects(risk_level__iexact='peligrosa')
-        return dangerous_areas
-    except Exception as e:
-        return {'error': str(e)} """
-    
+        # Obtener todas las ubicaciones para todos los usuarios
+        all_locations = db['locations'].find()
 
-""" def alert_if_in_dangerous_area():
-    try:
-        # Obtener la última ubicación registrada en locations NO PUEDO HASTA ACLARAR LOCATIONS
-        #latest_location = db['locations'].objects.order_by('_id').first()
+        # Obtener todas las zonas peligrosas
+        dangerous_areas = list(db['areas'].find({'risk_level': 'peligrosa'}))
 
-        if latest_location:
-            # Obtener todas las áreas peligrosas
-            dangerous_areas = get_dangerous_areas()
+        # Crear un diccionario para almacenar alertas por usuario
+        user_alerts = {}
 
-            # Crear un punto a partir de las coordenadas de la última ubicación
-            point = Point(latest_location.coordinates['coordinates'])
+        # Iterar sobre todas las ubicaciones y verificar si están en una zona peligrosa
+        for location in all_locations:
+            user_chatId = location['chatId']
+            user_point = Point(location['latitude'], location['longitude'])
 
-            # Verificar si el punto está dentro de alguna área peligrosa
+            # Verificar si el usuario ya tiene una alerta en el diccionario
+            if user_chatId not in user_alerts:
+                user_alerts[user_chatId] = {'in_danger': False}
+
+            # Verificar si el punto está dentro de alguna zona peligrosa
             for area in dangerous_areas:
-                area_polygon = Polygon(area.area['coordinates']['coordinates'][0])
-                if area_polygon.contains(point):
-                    # Enviar alerta o tomar alguna acción
-                    print('¡Alerta! La última ubicación está dentro de un área peligrosa.')
-                    return
+                area_polygon = Polygon(area['area']['coordinates'])
+                #print(user_chatId, area_polygon, user_point, area_polygon.contains(user_point), "\n")
+
+                if area_polygon.contains(user_point):
+                    user_alerts[user_chatId]['in_danger'] = True
+                    break
+                else:
+                    user_alerts[user_chatId]['in_danger'] = False
+
+        # Filtrar usuarios que están en peligro
+        users_in_danger = [user for user, alert_status in user_alerts.items() if alert_status['in_danger']]
+
+        if users_in_danger:
+            return jsonify({'status': '1', 'users_in_danger': users_in_danger})
+        else:
+            return jsonify({'status': '0'})
+
     except Exception as e:
-        print(f'Error: {e}') """
+        return jsonify({'error': str(e)})
 
 if __name__ == '__main__':
     app.run(debug=True)
