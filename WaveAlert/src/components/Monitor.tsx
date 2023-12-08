@@ -1,6 +1,6 @@
 
 import credentials from "./Credentials/credentials";
-import { useEffect, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import alerta from "../assets/enviarAlerta-removebg-preview.png"
 import points from "./points";
 import { MapContainer, TileLayer, FeatureGroup, Marker, Popup } from "react-leaflet";
@@ -8,36 +8,72 @@ import { EditControl } from "react-leaflet-draw";
 import 'leaflet/dist/leaflet.css'; // Importa los estilos de Leaflet
 import L from 'leaflet';
 import 'leaflet.heat/dist/leaflet-heat.js';
+import { getAllAreas, getDangerousAreas, getSafeAreas } from "../services/alertas";
+import { useQuery } from "react-query";
+import { lastposition } from "../services/user";
+import useInterval from "../hooks/useInterval";
 function Monitor() {
-    const [esquiador, setEsquiador] = useState(false);
-    const position = [51.505, -0.09]
-    const recibirDatos = (value: any) => {
-        setEsquiador(value);
-    }
+
+    const { data: areasData, refetch: refetchDanger } = useQuery({
+        queryKey: ["allAreas"],
+        queryFn: () => getAllAreas(),
+        onSuccess: (danger) => { console.log("All:", danger) }
+    })
+
+    const { data: lastPosition, refetch: refetchlastPosition } = useQuery({
+        queryKey: ["lastPosition"],
+        queryFn: () => lastposition(),
+        onSuccess: (danger) => { console.log("Last:", danger) }
+    })
+
+    useInterval(() => {
+        refetchlastPosition();
+    }, 1000);
+
+    const mapRef = useRef(null);
+
     useEffect(() => {
-    // Datos de ejemplo (latitud, longitud, intensidad)
-    const data = points;
-    const heatData = data.map(([lat, lon, intensity]) => [lat, lon, intensity]);
-    const map = L.map('map').setView([-37.87, 175.475], 15); // Establece el centro y el zoom inicial
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map); // Añade una capa de mosaico
-    const heatLayer = (L as any).heatLayer(heatData).addTo(map);
- 
-    return () => { 
-        // Limpia los recursos cuando el componente se desmonta
-        map.remove();
-      };
-    }, []); // El segundo argumento del useEffect asegura que este código se ejecute solo una vez al montar el componente
-  
+        if (areasData && areasData.areas) {
+            if (!mapRef.current) {
+                const val =areasData.areas[2].area.coordinates[0]
+                // Initialize map only if it's not already initialized
+                //const map = L.map('map').setView([val[0], val[1]], 18);
+                const map = L.map('map').setView([-33.505246, -70.777863], 18)
+                L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png').addTo(map);
+                areasData.areas.forEach(d => {
+                    if (d.risk_level == "Bajo") {
+                        var polygon = L.polygon(d.area.coordinates, { color: 'blue' });
+                        const label = `${d.area_name}`;
+                        const popup = L.popup().setContent(label);
+                        polygon.bindPopup(popup);
+                        polygon.addTo(map);
+                    }else
+                    {
+                        var polygon = L.polygon(d.area.coordinates, { color: 'red' });
+                        const label = `${d.area_name}`;
+                        const popup = L.popup().setContent(label);
+                        polygon.bindPopup(popup);
+                        polygon.addTo(map);
+                    }
+
+                });
+
+                lastPosition?.forEach(p => {
+                    L.marker([p.latitude, p.longitude]).addTo(map).bindPopup(p.name)
+                })
+                return () => {
+                    // Clean up resources when the component is unmounted
+                    map.remove();
+                };
+            }
+        }
+    }, [areasData && areasData.areas && lastPosition]);
+
     return (
         <div className="flex flex-col items-center justify-center p-2 bg-opacity-50 bg-white h-full bg-blur-md">
-            <img className="h-12 w-56 mb-8" src={alerta} alt="" />
+            <h2 className="text-2xl mb-8">Tiempo real</h2>
             <div className="flex flex-row gap-36 w-full">
                 <div id="map" style={{ width: '100%', height: '500px' }} className="flex flex-col items-center justify-center p-2 bg-opacity-50 bg-white h-full bg-blur-md w-2/3">
-                </div>
-                <div className="flex flex-col items-center">
-                    <div className="flex flex-row items-center justify-center">
-                        
-                    </div>
                 </div>
             </div>
 

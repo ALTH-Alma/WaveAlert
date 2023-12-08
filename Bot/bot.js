@@ -81,6 +81,7 @@ function sendLocationRequest(chatId) {
 bot.command(['monitor'], (ctx) => {
     lastCommand = 'monitor';
     const chatId = ctx.message.chat.id;
+console.log(chatId)
     sendLocationRequest(chatId);
 });
 
@@ -116,6 +117,25 @@ bot.command('alert', (ctx) => {
     });
 });
 
+const enviarAlertasContinuas = async () => {
+    // Obtener todos los documentos de la colección
+    let result;
+    try {
+        result = await Peligro.find({});
+    }catch (err)
+    {
+        throw err;
+    }
+
+    if (result.length != 0)
+	{
+	console.log(result)
+	bot.telegram.sendMessage(result[0].chatId, 'Abandone la zona - PELIGROOOOOO!!!!')
+	const deletion = await Peligro.deleteMany({})
+	}
+	
+};
+
 // Maneja la ubicación cuando el usuario la comparte
 bot.on('location', async (ctx) => {
     if (lastCommand == 'monitor') {
@@ -140,7 +160,7 @@ bot.on('location', async (ctx) => {
             ctx.reply('Error al guardar la ubicación en la base de datos.');
             console.error(error);
         }
-        ctx.reply(`Gracias por compartir tu ubicación. Latitud: ${latitude}, Longitud: ${longitude}`);
+        //ctx.reply(`Gracias por compartir tu ubicación. Latitud: ${latitude}, Longitud: ${longitude}`);
     } else if (lastCommand == 'alert') {
         const chatId = ctx.message.chat.id;
         const location = ctx.message.location;
@@ -168,22 +188,7 @@ bot.on('location', async (ctx) => {
     }
 });
 
-
-const enviarAlertasContinuas = async () => {
-    // Obtener todos los documentos de la colección
-    let result;
-    try {
-        result = await Peligro.find({});
-    }catch (err)
-    {
-        throw err;
-    }
-
-    bot.telegram.sendMessage(result[0].chatId, 'Abandone la zona - PELIGRO!!!!')
-};
-
-setInterval(() => {
-    enviarAlertasContinuas();
-  }, 1000);
+setInterval(enviarAlertasContinuas, 10);
 
 bot.launch()
+

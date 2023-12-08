@@ -36,24 +36,25 @@ const SendAlert = () => {
                         <tr>
                             <th scope="col" className="px-6 py-4">ID Pulsera</th>
                             <th scope="col" className="px-6 py-4">Nombre</th>
-                            <th scope="col" className="px-6 py-4">N° Alertas</th>
-                            <th scope="col" className="px-6 py-4">Estado</th>
                             <th scope="col" className="px-6 py-4">Acción</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr className="border-b dark:border-neutral-500 bg-red-200">
+						
+                        {alertas != undefined && alertas.users_in_danger_chatId?.map((alert, item) => {
+						return (
+<tr key={item} className="border-b dark:border-neutral-500 bg-red-200">
                             <td className="whitespace-nowrap px-6 py-4 font-medium">
-                                1
+                                {alert}
                             </td>
-                            <td className="whitespace-nowrap px-6 py-4">2</td>
-                            <td className="whitespace-nowrap px-6 py-4">3</td>
-                            <td className="whitespace-nowrap px-6 py-4">4</td>
+                            <td className="whitespace-nowrap px-6 py-4">{alertas.user_in_danger_name[item]}</td>
                             <td className="whitespace-nowrap px-6 py-4"><button onClick={() => 
                             {
-                                alertarMutation.mutate({chatId: '6464145869', alertar: true})
-                            }} className="bg-blue-500 text-white rounded-md px-2 py-1">Alertas</button></td>
-                        </tr>
+                                alertarMutation.mutate({chatId: alert, alertar: true})
+                            }} className="bg-red-800 text-white rounded-md px-2 py-1">Enviar alerta</button></td>
+                        </tr>							
+								)
+})}
                     </tbody>
                 </table>
             </div>
