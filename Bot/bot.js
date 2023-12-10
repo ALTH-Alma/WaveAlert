@@ -49,8 +49,12 @@ const locations = {};
 // Objeto para almacenar intervalos por chat ID
 const intervals = {};
 //----------------------------------- COMANDOS ----------------------------------------------
+
+const path = require('./');
 bot.start((ctx) => {
-    ctx.reply('Bienvenido a WaveAlert')
+    ctx.replyWithSticker({ source: './stickers/bienvenida.png' });
+    ctx.reply(`Bienvenido ${ctx.message.from.first_name} a WaveAlert`)
+    
 })
 
 bot.help((ctx) => {
@@ -81,7 +85,7 @@ function sendLocationRequest(chatId) {
 bot.command(['monitor'], (ctx) => {
     lastCommand = 'monitor';
     const chatId = ctx.message.chat.id;
-console.log(chatId)
+    console.log(chatId)
     sendLocationRequest(chatId);
 });
 
@@ -122,18 +126,16 @@ const enviarAlertasContinuas = async () => {
     let result;
     try {
         result = await Peligro.find({});
-    }catch (err)
-    {
+    } catch (err) {
         throw err;
     }
 
-    if (result.length != 0)
-	{
-	console.log(result)
-	bot.telegram.sendMessage(result[0].chatId, 'Abandone la zona - PELIGROOOOOO!!!!')
-	const deletion = await Peligro.deleteMany({})
-	}
-	
+    if (result.length != 0) {
+        console.log(result)
+        bot.telegram.sendMessage(result[0].chatId, 'Abandone la zona - PELIGROOOOOO!!!!')
+        const deletion = await Peligro.deleteMany({})
+    }
+
 };
 
 // Maneja la ubicación cuando el usuario la comparte

@@ -2,12 +2,13 @@ import geo from '../assets/marcador-de-posicion.png'
 import calor from '../assets/mapa-de-calor.png'
 import prediccion from '../assets/prediccion.png'
 import { useState } from 'react'
+import planes from "../assets/planes-removebg-preview.png"
 const Plans = () => {
     const [premiumVisible, setPremiumVisible] = useState(false)
     return (
-        <div className="flex flex-col">
-            <div className="flex flex-col justify-center p-2 bg-white bg-opacity-50">
-                <h2 className="flex items-center justify-center text-2xl font-bold mt-8">Planes</h2>
+        <div className="flex flex-col" >
+            <div className="flex flex-col p-2 items-center bg-white bg-opacity-50" style={{height: '1000px' }} >
+            <img className="h-16 w-36 mb-8 mt-4" src={planes} alt="" />
                 <div className="flex items-center justify-center m-10">
                     <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
 

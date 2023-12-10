@@ -185,10 +185,11 @@ def check_dangerous_areas():
         for location in all_locations:
             user_chatId = location['chatId']
             user_name = location['name']
+            user_pos = [location['latitude'], location['longitude']]
             user_point = Point(location['latitude'], location['longitude'])
             # Verificar si el usuario ya tiene una alerta en el diccionario
             if user_chatId not in user_alerts:
-                user_alerts[user_chatId] = {'user_name': user_name, 'in_danger': False}
+                user_alerts[user_chatId] = {'user_name': user_name, 'in_danger': False, 'user_pos': user_pos}
 
             # Verificar si el punto está dentro de alguna zona peligrosa
             for area in dangerous_areas:
@@ -202,9 +203,10 @@ def check_dangerous_areas():
         # Filtrar usuarios que están en peligro
         users_in_danger_chatId = [user for user, alert_status in user_alerts.items() if alert_status['in_danger']]
         users_in_danger_names = [alert_status['user_name'] for user, alert_status in user_alerts.items() if alert_status['in_danger']]
+        users_in_danger_pos = [alert_status['user_pos'] for user, alert_status in user_alerts.items() if alert_status['in_danger']]
 
         if users_in_danger_chatId:
-            return jsonify({'status': '1', 'users_in_danger_chatId': users_in_danger_chatId, 'user_in_danger_name': users_in_danger_names})
+            return jsonify({'status': '1', 'users_in_danger_chatId': users_in_danger_chatId, 'user_in_danger_name': users_in_danger_names, 'user_in_danger_pos': users_in_danger_pos})
         else:
             return jsonify({'status': '0','users_in_danger_chatId': [], 'user_in_danger_name': []})
 

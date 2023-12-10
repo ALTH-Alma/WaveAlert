@@ -9,7 +9,7 @@ import L from 'leaflet';
 import 'leaflet.heat/dist/leaflet-heat.js';
 import { tryLogin } from "../services/user";
 import Modal from "./Modal";
-
+import recibidas from '../assets/Alertas_recibidas-removebg-preview.png'
 const ReceivedAlert = () => {
     const [dataFiltered, setDataFiltered] = useState([]);
     const [atend, setAtend] = useState(false);
@@ -66,9 +66,10 @@ const ReceivedAlert = () => {
 
     return (
         <div className="flex flex-col items-center p-2 bg-opacity-50 bg-white h-full bg-blur-md">
-            <h2 className="mb-8 text-xl mt-8">Alertas Recibidas</h2>
+            
             <div className="flex flex-row h-full w-full gap-4">
                 <div className="flex flex-col items-center p-2 bg-opacity-50 bg-blur-md w-1/2 h-1/2">
+                <img className="h-14 w-56 mb-8 mt-2" src={recibidas} alt="" />
                     <table className="min-w-full text-center text-sm font-light">
                         <thead className="border-b font-medium dark:border-neutral-500">
                             <tr>
@@ -131,7 +132,7 @@ const ReceivedAlert = () => {
                         </tbody>
                     </table>
                 </div>
-                <div id="map" className="flex flex-col h-full mb-8 items-center justify-center p-2 bg-opacity-50 bg-white bg-blur-md w-1/2">
+                <div id="map" className="flex flex-col h-full mb-8 items-center justify-center p-2 bg-opacity-50 bg-white bg-blur-md w-1/2" style={{ width: '100%', height: '800px' }}>
                 </div>
             </div>
 

@@ -82,8 +82,8 @@ function HeatMap() {
 
     return (
         <div className="flex flex-col items-center justify-center p-2 bg-opacity-50 bg-white h-full bg-blur-md">
-            <img className="h-12 w-56 mb-8" src={calor} alt="" />
-            <div id="map" style={{ width: '100%', height: '500px' }} className="flex flex-col items-center justify-center p-2 bg-opacity-50 bg-white h-full bg-blur-md w-2/3">
+            <img className="h-16 w-58 mb-8" src={calor} alt="" />
+            <div id="map" style={{ width: '100%', height: '800px' }} className="flex flex-col items-center justify-center p-2 bg-opacity-50 bg-white h-full bg-blur-md w-2/3">
             </div>
         </div>
     );
