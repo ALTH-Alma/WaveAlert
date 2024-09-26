@@ -1,0 +1,9 @@
+[{
+  "_id": {
+    "$oid": "656c9197cda2ebb8c727e2d2"
+  },
+  "name": "Ariel Argomedo",
+  "mail": "ariel.argomedo@usach.cl",
+  "pass": "123456789",
+  "logged": true
+}]

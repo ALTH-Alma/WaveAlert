@@ -36,12 +36,15 @@ function Navbar() {
 
                         {user.data && <Link className="inline-block rounded-lg px-2 py-1 text-md font-medium text-gray-900 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900"
                             to="/alert">Monitorear</Link>}
+                            
+                        {user.data && <Link className="inline-block rounded-lg px-2 py-1 text-md font-medium text-gray-900 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900"
+                            to="/heatmap">Mapa de calor</Link>}
+
+                        {user.data && <Link className="inline-block rounded-lg px-2 py-1 text-md font-medium text-gray-900 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900"
+                            to="/received-alert">Alertas recibidas</Link>}
 
                         {user.data && <Link className="inline-block rounded-lg px-2 py-1 text-md font-medium text-gray-900 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900"
                             to="/send-alert">Enviar alerta</Link>}
-
-                        {user.data && <Link className="inline-block rounded-lg px-2 py-1 text-md font-medium text-gray-900 transition-all duration-200 hover:bg-gray-100 hover:text-gray-900"
-                            to="/heatmap">Mapa de calor</Link>}
 
 
                     </div>

@@ -4,21 +4,22 @@ import {
 import BodyLayout from "./pages/BodyLayout";
 import MainLayout from "./pages/MainLayout";
 import Home from "./components/Home"
-import Alert from "./components/Alert";
 import Emergencias from "./components/Emergencias";
 import Plans from "./components/Plans";
 import Login from "./components/Login";
 import RequireAuth from "./pages/RequireAuth";
 import HeatMap from "./components/HeatMap";
 import SendAlert from "./components/SendAlert";
+import ReceivedAlert from "./components/ReceivedAlert";
+import Monitor from "./components/Monitor";
 
 const protectedRoutes = {
   element: <RequireAuth/>,
   children:[
-  { path: "/alert", element: <Alert/>},
-  { path: "/emergency", element: <Emergencias/>},
+  { path: "/alert", element: <Monitor/>},
   { path: "/heatmap", element: <HeatMap/>},
-  { path: "/send-alert", element: <SendAlert/>}
+  { path: "/send-alert", element: <SendAlert/>},
+  { path: "/received-alert", element: <ReceivedAlert/>}
 
   ]
 }

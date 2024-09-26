@@ -7,6 +7,10 @@ export function tryLogin(data:{mail:string, pass:string})
 
 export function logout(data:{mail:string, pass:string})
 {
-    console.log(data)
     return axios.post("logout", data).then(res => res.data)
+}   
+
+export function lastposition()
+{
+    return axios.get("/lastposition").then(res => res.data)
 }   

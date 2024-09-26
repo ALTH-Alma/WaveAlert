@@ -1,0 +1,261 @@
+[{
+  "_id": {
+    "$oid": "657112966454f36af533d283"
+  },
+  "chatId": "6464145869",
+  "name": "Ariel",
+  "latitude": -33.505246,
+  "longitude": -70.777863,
+  "status": "Atendida",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "657123c06454f36af533d285"
+  },
+  "chatId": "6464145869",
+  "name": "Ariel",
+  "latitude": -33.505246,
+  "longitude": -70.777863,
+  "status": "Atendida",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6571245f6454f36af533d289"
+  },
+  "chatId": "6438504077",
+  "name": "Alma",
+  "latitude": -33.470602,
+  "longitude": -70.697364,
+  "status": "Atendida",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6571313b6454f36af533d28b"
+  },
+  "chatId": "1925055817",
+  "name": "Moncho",
+  "latitude": -33.521258,
+  "longitude": -70.783045,
+  "status": "Atendida",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "657131416454f36af533d28d"
+  },
+  "chatId": "1925055817",
+  "name": "Moncho",
+  "latitude": -33.521167,
+  "longitude": -70.782732,
+  "status": "Atendida",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6571426e1e44aadd40027554"
+  },
+  "chatId": "6464145869",
+  "name": "Ariel",
+  "latitude": -33.505246,
+  "longitude": -70.777863,
+  "status": "Atendida",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "657143761e44aadd40027556"
+  },
+  "chatId": "6464145869",
+  "name": "Ariel",
+  "latitude": -33.505246,
+  "longitude": -70.777863,
+  "status": "Atendida",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6571437c1e44aadd40027558"
+  },
+  "chatId": "6464145869",
+  "name": "Ariel",
+  "latitude": -33.505246,
+  "longitude": -70.777863,
+  "status": "Atendida",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6572c7b77fb801345ebaa0d6"
+  },
+  "chatId": "6464145869",
+  "name": "Ariel",
+  "latitude": -33.505246,
+  "longitude": -70.777863,
+  "status": "Atendida",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "657369f8f7ef5b91274b81f8"
+  },
+  "chatId": "1925055817",
+  "name": "Moncho",
+  "latitude": -33.521245,
+  "longitude": -70.783077,
+  "status": "Atendida",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "65736a08f7ef5b91274b85db"
+  },
+  "chatId": "1925055817",
+  "name": "Moncho",
+  "latitude": -33.521232,
+  "longitude": -70.783109,
+  "status": "Atendida",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "657349cdf7ef5b91274e005e"
+  },
+  "chatId": "6464145869",
+  "name": "Ariel",
+  "latitude": -33.505246,
+  "longitude": -70.777863,
+  "status": "Atendida",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "65735293f7ef5b9127502bfd"
+  },
+  "chatId": "6464145869",
+  "name": "Ariel",
+  "latitude": -33.505246,
+  "longitude": -70.777863,
+  "status": "Atendida",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "65735cc9f7ef5b912752b439"
+  },
+  "chatId": "1396213573",
+  "name": "karlos",
+  "latitude": -33.505199,
+  "longitude": -70.777855,
+  "status": "Atendida",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "65735e20f7ef5b9127530952"
+  },
+  "chatId": "6464145869",
+  "name": "Ariel",
+  "latitude": -33.505246,
+  "longitude": -70.777863,
+  "status": "Atendida",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "65735e42f7ef5b91275311c7"
+  },
+  "chatId": "1396213573",
+  "name": "karlos",
+  "latitude": -33.505193,
+  "longitude": -70.777912,
+  "status": "Atendida",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "65735f1af7ef5b9127534766"
+  },
+  "chatId": "6464145869",
+  "name": "Ariel",
+  "latitude": -33.505246,
+  "longitude": -70.777863,
+  "status": "Atendida",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "65735f7df7ef5b9127535fe5"
+  },
+  "chatId": "6464145869",
+  "name": "Ariel",
+  "latitude": -33.505246,
+  "longitude": -70.777863,
+  "status": "Atendida",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "65736176f7ef5b912753dd09"
+  },
+  "chatId": "6464145869",
+  "name": "Ariel",
+  "latitude": -33.505246,
+  "longitude": -70.777863,
+  "status": "Atendida",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6573728df7ef5b912758179f"
+  },
+  "chatId": "6464145869",
+  "name": "Ariel",
+  "latitude": -33.505246,
+  "longitude": -70.777863,
+  "status": "Atendida",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6573b3b514b0718ddb2f8b2e"
+  },
+  "chatId": "6464145869",
+  "name": "Ariel",
+  "latitude": -33.505246,
+  "longitude": -70.777863,
+  "status": "Atendida",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6573b625f25d0c4718b12bd6"
+  },
+  "chatId": "6438504077",
+  "name": "Alma",
+  "latitude": -33.470562,
+  "longitude": -70.697381,
+  "status": "Atendida",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6573d42aaeaadafee2c1375b"
+  },
+  "chatId": "6464145869",
+  "name": "Ariel",
+  "latitude": -33.505246,
+  "longitude": -70.777863,
+  "status": "Atendida",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6573d54baeaadafee2c17ebb"
+  },
+  "chatId": "6464145869",
+  "name": "Ariel",
+  "latitude": -33.505246,
+  "longitude": -70.777863,
+  "status": "Atendida",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "6573d55daeaadafee2c1835b"
+  },
+  "chatId": "6464145869",
+  "name": "Ariel",
+  "latitude": -33.505246,
+  "longitude": -70.777863,
+  "status": "Atendida",
+  "__v": 0
+},{
+  "_id": {
+    "$oid": "65755c20ec131cfdf75ccde3"
+  },
+  "chatId": "6464145869",
+  "name": "Ariel",
+  "latitude": -33.520609,
+  "longitude": -70.787383,
+  "status": "No atendida",
+  "__v": 0
+}]
